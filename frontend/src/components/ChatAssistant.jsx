@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API_BASE = "https://ai-job-tracker-1-n6hb.onrender.com";
+const API_BASE = "https://ai-job-tracker-2-elbs.onrender.com";
 
 export default function ChatAssistant({ onFilters }) {
   const [msg, setMsg] = useState("");
