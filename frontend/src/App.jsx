@@ -4,7 +4,7 @@ import Filters from "./components/Filters";
 import ChatAssistant from "./components/ChatAssistant";
 import "./App.css";
 
-const API_BASE = "https://ai-job-tracker-2-elbs.onrender.com"; // 🔴 CHANGE THIS
+const API_BASE = "https://ai-job-tracker-2-elbs.onrender.com/jobs"; // 🔴 CHANGE THIS
 
 export default function App() {
   const [jobs, setJobs] = useState([]);

@@ -1,4 +1,4 @@
-const API_BASE = "https://ai-job-tracker-2-elbs.onrender.com";
+const API_BASE = "https://ai-job-tracker-2-elbs.onrender.com/jobs";
 
 export const fetchJobs = async (query = "") => {
   const res = await fetch(`${API_BASE}/jobs?q=${query}`);
