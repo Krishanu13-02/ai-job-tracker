@@ -1,12 +1,14 @@
 import { useState } from "react";
 
+const API_BASE = "https://ai-job-tracker-1-n6hb.onrender.com";
+
 export default function ChatAssistant({ onFilters }) {
   const [msg, setMsg] = useState("");
 
   const send = async () => {
     const text = msg.toLowerCase();
 
-    const res = await fetch("http://localhost:5000/ai/chat", {
+    const res = await fetch(`${API_BASE}/ai/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ message: msg }),
@@ -15,7 +17,7 @@ export default function ChatAssistant({ onFilters }) {
     const data = await res.json();
     let filters = data.filters || {};
 
-    // 🔒 Hard fallback if AI returns {}
+    // Fallback if AI returns empty
     if (!filters.role) {
       if (text.includes("react")) filters.role = "react";
       else if (text.includes("python")) filters.role = "python";

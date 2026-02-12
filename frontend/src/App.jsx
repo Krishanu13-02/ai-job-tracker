@@ -3,6 +3,8 @@ import JobCard from "./components/JobCard";
 import Filters from "./components/Filters";
 import ChatAssistant from "./components/ChatAssistant";
 
+const API_BASE = "https://ai-job-tracker-1-n6hb.onrender.com";
+
 export default function App() {
   const [jobs, setJobs] = useState([]);
   const [filters, setFilters] = useState({});
@@ -11,7 +13,7 @@ export default function App() {
   useEffect(() => {
     const q = filters.role || "developer";
 
-    fetch(`http://localhost:5000/jobs?q=${encodeURIComponent(q)}`)
+    fetch(`${API_BASE}/jobs?q=${encodeURIComponent(q)}`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setJobs(data);
@@ -27,7 +29,7 @@ export default function App() {
     const formData = new FormData();
     formData.append("file", file);
 
-    fetch("http://localhost:5000/resume", {
+    fetch(`${API_BASE}/resume`, {
       method: "POST",
       body: formData,
     })
@@ -42,7 +44,7 @@ export default function App() {
   };
 
   const saveApplication = (job, status) => {
-    fetch("http://localhost:5000/applications", {
+    fetch(`${API_BASE}/applications`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ job, status }),
@@ -72,24 +74,22 @@ export default function App() {
 
       {/* AI Chat controls filters */}
       <ChatAssistant
-  onFilters={(aiFilters) => {
-    if (!aiFilters) return;
+        onFilters={(aiFilters) => {
+          if (!aiFilters) return;
 
-    if (aiFilters.clear === true) {
-      setFilters({});
-      return;
-    }
+          if (aiFilters.clear === true) {
+            setFilters({});
+            return;
+          }
 
-    const hasAny =
-      aiFilters.role || aiFilters.location || aiFilters.minScore;
+          const hasAny =
+            aiFilters.role || aiFilters.location || aiFilters.minScore;
 
-    if (hasAny) {
-      setFilters((f) => ({ ...f, ...aiFilters }));
-    }
-  }}
-/>
-
-      
+          if (hasAny) {
+            setFilters((f) => ({ ...f, ...aiFilters }));
+          }
+        }}
+      />
 
       {bestMatches.length > 0 && (
         <>
@@ -118,9 +118,7 @@ export default function App() {
             Yes, Applied
           </button>
 
-          <button onClick={() => setPopupJob(null)}>
-            No, just browsing
-          </button>
+          <button onClick={() => setPopupJob(null)}>No, just browsing</button>
 
           <button onClick={() => saveApplication(popupJob, "Applied Earlier")}>
             Applied Earlier
