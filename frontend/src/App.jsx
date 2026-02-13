@@ -63,6 +63,9 @@ export default function App() {
     <div className="app">
       <h1>AI Job Tracker</h1>
 
+      {loading && <p>Loading jobs…</p>}
+
+
       <div style={{ marginBottom: 12 }}>
         <input type="file" accept=".txt,.pdf" onChange={handleResumeUpload} />
       </div>
