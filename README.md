@@ -18,8 +18,8 @@ A full-stack, AI-powered job tracking app that helps developers discover relevan
 - Deployment: Vercel (frontend), Render (backend)
 
 ## 🌐 Live Demo
-- Frontend: <PASTE YOUR VERCEL URL HERE>
-- Backend: <PASTE YOUR RENDER URL HERE>
+- Frontend: <https://ai-job-tracker-jet.vercel.app>
+- Backend: <https://ai-job-tracker-2-elbs.onrender.com>
 
 ## 🚀 Run Locally
 ```bash
